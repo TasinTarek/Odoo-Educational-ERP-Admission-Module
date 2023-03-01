@@ -1,0 +1,156 @@
+<odoo>
+  <data>
+    <!-- explicit tree view definition -->
+
+    <!-- <record model="ir.ui.view" id="se_admission_tree">
+      <field name="name">Admission</field>
+      <field name="model">se_admission</field>
+      <field name="arch" type="xml">
+          <tree>
+              <field name="name"/>
+              <field name="course"/>
+              <field name="batch"/>
+              <field name="admission_form_fee"/>
+              <field name="fees_term"/>
+              <field name="intake_no"/>
+              <field name="minimum_admission"/>
+              <field name="maximum_admission"/>
+              <field name="start_date"/>
+              <field name="end_date"/>
+          </tree>
+      </field>
+    </record> -->
+    <!-- Admission Form View -->
+    <record id="se_admission_form" model="ir.ui.view">
+        <field name="name">Admission</field>
+        <field name="model">se_admission</field>
+        <field name="arch" type="xml">
+          <form>
+              <group>
+                  <group>
+                      <field name="name"/>
+                      <field name="maximum_admission"/>
+                      <field name="start_date"/>
+                      <field name="admission_form_fee"/>
+                      <field name="fees_term"/>
+                  </group>
+                  <group>
+                      <field name="intake_no"/>
+                      <field name="minimum_admission"/>
+                      <field name="end_date"/>
+                      <field name="course"/>
+                      <field name="batch"/>
+                      
+                  </group>
+              </group>
+              
+              <h3>Admission Schedule</h3>
+              <group>
+                      <group>
+                          <field name="admission_test_date"/>
+                          <field name="venue_id"/>
+                      </group>
+                      <group>
+                          <field name="result_publish_date"/>
+                      </group>
+              </group>
+              <h3>Admission Fee</h3>
+              <group>
+                  <group>
+                      <field name="admission_fee_id"/>
+                  </group>
+                  <group>
+                      <field name="amount_admission_fee"/>
+                  </group>
+              </group>
+              <h3>"Faculty and Department"</h3>
+                  <group>
+                      <group>
+                          <field name="academic_faculty_id"/>
+                      </group>
+                      <group>
+                          <field name="department_id"/>
+                      </group>        
+                  </group>
+              <h3>Semester</h3>
+                  <group>
+                      <group>
+                          <field name="semester_id"/>
+                          <field name="semester_type"/>
+                      </group>
+                      <group>
+                   
+                          <field name="semester_year"/>
+                      </group>
+                  </group>
+                  <h3>Apply Type</h3>
+                      <group>
+                          <group>
+                              <field name="is_local_bachelor_program_hsc"/>
+                              <field name="is_local_bachelor_program_a_level"/>
+                              <field name="is_local_bachelor_program_diploma"/>
+                          </group>
+                          <group>
+                              <field name="is_local_masters_program_bachelor"/>
+                              <field name="is_international_bachelor_program"/>
+                              <field name="is_international_masters_program"/>
+                          </group>
+                      </group>
+                      <h3>Available in Campus</h3>
+                        <!-- <group>
+                            <group><field name="campus"/></group>
+                        </group> -->
+                      <h3>Admission Eligibility</h3>
+                        <!-- <group>
+                            <group><field name ="admission_eligibility"/></group>
+                        </group>   -->
+                        <h3>Application</h3>
+          </form>
+        </field>
+    </record>
+    
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="action_se_admission_tree">
+      <field name="name">New Admission / New Intake</field>
+      <field name="res_model">se_admission</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="se_addmission_practise.action_server">
+      <field name="name">se_addmission_practise server</field>
+      <field name="model_id" ref="model_se_addmission_practise_se_addmission_practise"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="se_addmission_practise" id="se_addmission_practise.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="se_addmission_practise.menu_1" parent="se_addmission_practise.menu_root"/>
+    <menuitem name="Menu 2" id="se_addmission_practise.menu_2" parent="se_addmission_practise.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="se_addmission_practise.menu_1_list" parent="se_addmission_practise.menu_1"
+              action="se_addmission_practise.action_window"/>
+    <menuitem name="Server to list" id="se_addmission_practise" parent="se_addmission_practise.menu_2"
+              action="se_addmission_practise.action_server"/>
+-->
+  </data>
+</odoo>
