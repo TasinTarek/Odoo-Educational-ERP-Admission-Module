@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "se_admission",
+    'name': "Smart Edu Admission",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Best Educational ERP in Smart Way.
+        """,
 
     'description': """
         Long description of module's purpose
     """,
 
-    'author': "My Company",
+    'author': "Tasin Tarek",
     'website': "https://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing

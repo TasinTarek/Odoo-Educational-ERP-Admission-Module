@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <!--Menus-->
-        <menuitem name= "Smart Edu Core" id="admission_menu" />
+        <menuitem name= "Admission" id="admission_menu" />
         <!--Sub Menus  -->
         <menuitem name="Admission" id="admission_sub_menu" parent="admission_menu" action="action_se_admission_tree" />
     </data>

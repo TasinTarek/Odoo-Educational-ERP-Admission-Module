@@ -4,7 +4,7 @@ from odoo import models, fields, api
 
 
 class se_admission(models.Model):
-     _name = 'se_admission'
+     _name = 'se.admission'
      _description = 'Admission'
 
      name = fields.Char(
@@ -54,10 +54,9 @@ class se_admission(models.Model):
          default=fields.Datetime.now,
      )
      
-     venue_id = fields.Char(
-         string='Admission Test Venue',
-     )
-     
+      
+     venue_ids = fields.Many2many('se.venue', string='Venues')
+
      admission_fee_id = fields.Char(
          string='Admission Fee',
      )
@@ -99,6 +98,5 @@ class se_admission(models.Model):
           string='International - Masters Program', default=False
      )
      
-     # campus_ids = fields.Many2many(comodel_name='op.campus.facility', relation="admission_register_campus_rel",
-     #                              column1="admission_register_id", column2="campus_id", string='Campus', domain=[('is_campus', '=', True)])
-     # admission_eligibility = fields.Text(string='Eligibility') 
+     campus_id = fields.Text(string="Daffodil Smart City")
+     admission_eligibility = fields.Text(string='Eligibility') 
