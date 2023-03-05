@@ -128,7 +128,7 @@
                   <field name="note"/>
                 </group>
               </group> 
-              <h2>ADMISSIONS</h2>
+              <h2 class="text-primary">ADMISSIONS</h2>
                 <group>
                   <group>
                     <group><field name="is_default_venue"/></group>
