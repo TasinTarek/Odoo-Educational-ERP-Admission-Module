@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Smart Edu Admission",
+    'name': "SmartEdu Admission",
 
     'summary': """
         Best Educational ERP in Smart Way.
@@ -20,12 +20,17 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base',
+                'se_campus_facility'],
 
     # always loaded
     'data': [
+    # Security
         'security/ir.model.access.csv',
+    #Views 
         'views/se_admission_views.xml',
+        'views/se_application_views.xml',
+    #Menus 
         'views/se_menus.xml',
     ],
     # only loaded in demonstration mode

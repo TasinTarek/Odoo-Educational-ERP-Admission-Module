@@ -5,6 +5,7 @@ from odoo import models, fields, api
 
 class se_admission(models.Model):
      _name = 'se.admission'
+     _inherit = 'se.venue'
      _description = 'Admission'
 
      name = fields.Char(

@@ -4,6 +4,9 @@
         <!--Menus-->
         <menuitem name= "Admission" id="admission_menu" />
         <!--Sub Menus  -->
-        <menuitem name="Admission" id="admission_sub_menu" parent="admission_menu" action="action_se_admission_tree" />
+        <menuitem name="Admissions" id="admission_sub_menu" parent="admission_menu"/>
+        <!-- Child Menu -->
+        <menuitem name="Admission Registers / Intake" id="admission_child_menu" parent="admission_sub_menu" action="action_se_admission_tree"/>
+        <menuitem name="Applications" id="application_child_menu_" parent="admission_sub_menu" action="action_application" />
     </data>
 </odoo>

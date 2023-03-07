@@ -1,3 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_se_admission,se_admission,model_se_admission,base.group_user,1,1,1,1
-access_se_venue,se_venue,model_se_venue,base.group_user,1,1,1,1
+access_se_application,se_application,model_se_application,base.group_user,1,1,1,1
