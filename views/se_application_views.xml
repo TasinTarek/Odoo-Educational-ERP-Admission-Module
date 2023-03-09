@@ -14,11 +14,11 @@
                     <field name="first_name" />
                     <field name="middle_name" />
                     <field name="last_name" />
-        
+
                 </tree>
             </field>
         </record>
-        
+
 
         <!-- Form view for "model" -->
 
@@ -31,96 +31,215 @@
             <field name="active" eval="True" />
             <field name="arch" type="xml">
                 <form string="Registration">
-                    <header groups="base.group_user">
-                        <!-- <button string="Submit" states="draft" class="oe_highlight" type="object" name="submit_form"/>
-                        <button name="confirm_in_progress" states="submit,pending" string="Confirm" type="object" class="oe_highlight"/>
-                        <button string="Admission Confirm" class="oe_highlight" states="confirm" type="object" name="admission_confirm"/>
-                        <button name="enroll_student" states="admission" string="Enroll" type="object" class="oe_highlight"/>
-                        <button name="confirm_rejected" states="confirm,confirm_pending" string="Reject" type="object"/>
-                        <button name="confirm_pending" states="submit" string="Pending" type="object"/>
-                        <button name="confirm_cancel" string="Cancel" type="object"/>
-                        <button name="confirm_to_draft" states="pending,reject,cancel" string="Set to Draft" type="object"/>
-                        <button name="open_student" states="done" string="Open Student Profile" type="object"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/> -->
-                    </header>
+                    <header>
+
+                        <button name="submit_form"
+                            string="Submit"
+                            type="object"
+                            class="oe_highlight" />
+                        <button name="confirm_cancel"
+                            string="Cancel"
+                            type="object"
+                             />
+<!--                         
+                        <button name="generate_student_id_wizard"
+                            string="Generate Student ID"
+                            type="object"
+                            class="oe_highlight" />
+                        <button name="create_invoice_admission_applicant_admission_fee"
+                            string="Generate Admission Fee"
+                            type="object"
+                            class="oe_highlight" />
+                        <button name="action_admission_fee_allow_payment_amount_wizard"
+                            string="Allow Payment Amount for Admission Fee"
+                            type="object"
+                            class="oe_highlight" />
+                        <button name="action_admission_applicant_admitted_wizard"
+                            string="Confirm Admission"
+                            type="object"
+                            class="oe_highlight" />
+                        <button name="action_admission_applicant_admitted_wizard"
+                            string="Propose Student Email"
+                            type="object"
+                            class="oe_highlight" />
+                        <button name="get_educational_board_result_ssc_and_hsc"
+                            string="Get Educational Board Result"
+                            type="object"
+                            class="oe_highlight" />
+                        <button name="action_eligibility_checker_wizard"
+                            string="Chechk Eligibility"
+                            type="object"
+                            class="oe_highlight" /> -->
+                        </header>
+                    <!-- Name Section -->
                     <sheet>
+                        <field name="applicant_photo" widget="image" class="oe_right oe_avatar" />
                         <div class="oe_title">
                             <h1>
                                 <table>
                                     <tr>
                                         <td>
-                                            <field name="first_name" placeholder="First Name" required="1" style="padding-right:10px" />
+                                            <field name="first_name" placeholder="First Name"
+                                                required="1" style="padding-right:10px" />
                                         </td>
                                         <td>
-                                            <field name="middle_name" placeholder="Middle Name" style="padding-right:10px"/>
+                                            <field name="middle_name" placeholder="Middle Name"
+                                                style="padding-right:10px" />
                                         </td>
                                         <td>
-                                            <field name="last_name" placeholder="Last Name" required="1" style="padding-right:10px"/>
+                                            <field name="last_name" placeholder="Last Name"
+                                                required="1" style="padding-right:10px" />
+                                        </td>
+                                        <td>
+
                                         </td>
                                     </tr>
                                 </table>
                             </h1>
                         </div>
-                        
-                        
+
+
+                        <!-- Admission Detail Section -->
                         <notebook>
-                            <page string="Admission Detail" >
-                                <group col="4" colspan="4">
-                                    <field name="register_id"  widget="selection"/>
-                                    <field name="application_number"/>
-                                    <field name="application_date"/>
-                                    <field name="admission_date"/>
-                                    <field name="course_id"/>
-                                    <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}"/>
-                                    <!-- <field name="fees" attrs="{'required': [('state','not in', ['draft', 'submit'])]}"/>
-                                    <field name="due_date"/>
-                                    <field name="fees_term_id" required="1" attrs="{'readonly': [('state','not in', ['draft', 'submit', 'confirm'])]}"/>
-                                    <field name="is_student"/>
-                                    <field name="partner_id"/>
-                                    <field name="student_id" placeholder="Student" options="{'no_create_edit': True}" attrs="{'required':[('is_student','=',True)],'invisible': [('is_student','=', False)]}"/> -->
+                            <page string="Admission Detail">
+
+                                <group>
+                                    <group>
+                                        <field name="is_alumni" />
+                                        <field name="register_id" widget="selection" />
+                                        <field name="application_number" />
+                                        <field name="admission_date" />
+                                        <field name="course_id" />
+                                        <field name="curriculum_id" />
+                                        <field name="order_id" />
+                                    </group>
+                                    <group>
+                                        <field name="student_id" />
+                                        <field name="application_serial_number" />
+                                        <field name="application_date" />
+                                        <field name="admission_expire_date" />
+                                        <field name="batch_id" />
+                                        <field name="fees" />
+                                        <field name="admission_fee" />
+                                        <field name="fees_term_id" />
+                                    </group>
+                                </group>
+                                <h3 class='text-primary' style="margin-top: 20px;">Faculty
+                                    &amp; Department</h3>
+                                <group>
+                                    <group>
+                                        <field name="academic_faculty_id" />
+                                    </group>
+                                    <group>
+                                        <field name="department_id" />
+                                    </group>
+                                </group>
+                                <h3 class='text-primary' style="margin-top: 20px;">
+                                    Semester</h3>
+                                <group>
+                                    <group>
+                                        <field name="semester_id" />
+                                        <field name="semester_type" />
+                                    </group>
+                                    <group>
+                                        <field name="semester_year_string" />
+                                    </group>
+                                </group>
+                                <h3 class='text-primary' style="margin-top: 20px;">
+                                    Academic</h3>
+                                <group>
+                                    <group>
+                                        <field name="form_type" />
+                                        <field name="student_type_id" />
+                                        <field name="education_shift_id" />
+                                        <field name="campus_id" />
+                                    </group>
+                                    <group>
+                                        <field name="form_apply_type" />
+                                        <field name="admission_type" />
+                                        <field name="academic_medium_type" />
+                                        <field name="campus_type" />
+                                    </group>
+                                </group>
+                                <h3 class='text-primary' style="margin-top: 20px;">Eligibility
+                                    Status</h3>
+                                <group>
+                                    <group>
+
+                                        <field name="eligibility_state" />
+                                        <field name="eligibility_applicant_state" />
+
+                                    </group>
+                                </group>
+                                <h2 class='text-primary' style="margin-top: 20px;">Admission
+                                    Test</h2>
+                                <h5>
+
+                                    <field name="is_eligible_for_admission_test"
+                                    />
+                                    <label for="is_eligible_for_admission_test"
+                                        string="Is Eligible for Admission Test?" />
+                                </h5>
+                                <group name="admission_test" col="4">
+                                    <field name="admission_test_date"
+                                        attrs="{'invisible':[('is_eligible_for_admission_test', '=', False)]}"
+                                    />
+                                    <field name="admission_test_venue_id"
+                                        attrs="{'invisible':[('is_eligible_for_admission_test', '=', False)]}"
+                                    />
+                                    <field name="result_publish_date"
+                                        attrs="{'invisible':[('is_eligible_for_admission_test', '=', False)]}"
+                                    />
                                 </group>
                             </page>
-                            <page string="Educational Detail" >
-                                <group col="4" colspan="4">
+                            <page string="Educational Detail">
+                                <!-- <group col="4" colspan="4">
                                     <field name="prev_institute_id"/>
                                     <field name="prev_course_id"/>
                                     <field name="prev_result"/>
-                                </group>
+                                </group> -->
                             </page>
-                            <page string="Personal Detail" >
-                                
+                            <page string="Personal Detail">
+
                             </page>
-                            <page string="Family Detail" >
-                                
+                            <page string="Family Detail">
+
                             </page>
-                            <page string="Manual Document " >
-                                
+                            <page string="Manual Document ">
+
                             </page>
-                            <page string="Payment Detail" >
-                                
-                            </page>    
+                            <page string="Payment Detail">
+
+                            </page>
                         </notebook>
-                        
-                        
+
+
                     </sheet>
-                </form>    
+                </form>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+
             </field>
         </record>
- <!-- Main window action for "model" -->
+        <!-- Main window action for "model" -->
         <record id="action_application" model="ir.actions.act_window">
-            <field name="name">Human readable name</field>
+            <field name="name">Application</field>
             <field name="res_model">se.application</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                    Click to add new Human readable name
-                </p><p>
-                    Something about model
+                    Click to add new Applicant
+                </p>
+                <p>
+
                 </p>
             </field>
         </record>
-        
-       
-        
+
+
     </data>
 </odoo>
