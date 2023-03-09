@@ -108,6 +108,7 @@
                               <group><field name ="admission_eligibility"/></group>
                           </group>   
                           <h2>Application</h2>
+                          <field name="application_ids" />
               </sheet>
           </form>
         </field>

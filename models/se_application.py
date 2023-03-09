@@ -21,9 +21,16 @@ class SeApplication(models.Model):
     student_id = fields.Char(
         string='Student ID'
     )
-    register_id = fields.Char(
-        string='Register Id'
+    # register_id = fields.Char(
+    #     string='Register Id'
+    # )
+    
+    register_id = fields.Many2one(
+        string='Register ID',
+        comodel_name='se.admission',
+        
     )
+    
     application_number = fields.Char(
         'Application Number')
     admission_date = fields.Date(

@@ -101,3 +101,11 @@ class se_admission(models.Model):
      
      campus_id = fields.Text(string="Daffodil Smart City")
      admission_eligibility = fields.Text(string='Eligibility') 
+
+      
+     application_ids = fields.One2many(
+         string='Application',
+         comodel_name='se.application',
+         inverse_name='register_id',
+     )
+     
