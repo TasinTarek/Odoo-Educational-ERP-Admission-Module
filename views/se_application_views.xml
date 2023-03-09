@@ -124,8 +124,8 @@
                                         <field name="fees_term_id" />
                                     </group>
                                 </group>
-                                <h3 class='text-primary' style="margin-top: 20px;">Faculty
-                                    &amp; Department</h3>
+                                <h2 class='text-primary' style="margin-top: 20px;">Faculty
+                                    &amp; Department</h2>
                                 <group>
                                     <group>
                                         <field name="academic_faculty_id" />
@@ -134,8 +134,8 @@
                                         <field name="department_id" />
                                     </group>
                                 </group>
-                                <h3 class='text-primary' style="margin-top: 20px;">
-                                    Semester</h3>
+                                <h2 class='text-primary' style="margin-top: 20px;">
+                                    Semester</h2>
                                 <group>
                                     <group>
                                         <field name="semester_id" />
@@ -145,8 +145,8 @@
                                         <field name="semester_year_string" />
                                     </group>
                                 </group>
-                                <h3 class='text-primary' style="margin-top: 20px;">
-                                    Academic</h3>
+                                <h2 class='text-primary' style="margin-top: 20px;">
+                                    Academic</h2>
                                 <group>
                                     <group>
                                         <field name="form_type" />
@@ -161,8 +161,8 @@
                                         <field name="campus_type" />
                                     </group>
                                 </group>
-                                <h3 class='text-primary' style="margin-top: 20px;">Eligibility
-                                    Status</h3>
+                                <h2 class='text-primary' style="margin-top: 20px;">Eligibility
+                                    Status</h2>
                                 <group>
                                     <group>
 

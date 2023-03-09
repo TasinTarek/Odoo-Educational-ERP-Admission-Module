@@ -45,48 +45,52 @@
                     </group>
                 </group>
                 
-                <h2 class='White' >Admission Schedule</h2>
+                <h2 class='text-primary' style="margin-top: 20px;">Admission Schedule</h2>
                 <group>
                         <group>
                             <field name="admission_test_date"/>
-                            <field name="venue_ids" widget="many2many_tags"/> 
-  
-  
-                        </group>
+                            <field name="venue_ids" widget="many2many_tags"/>
+
+
+                            </group>
                         <group>
                             <field name="result_publish_date"/>
+                            </group>
                         </group>
-                </group>
-                <h2>Admission Fee</h2>
+                <h2 class='text-primary' style="margin-top: 20px;">Admission
+                            Fee</h2>
                 <group>
                     <group>
                         <field name="admission_fee_id"/>
-                    </group>
+                            </group>
                     <group>
                         <field name="amount_admission_fee"/>
-                    </group>
-                </group>
-                <h2>Faculty and Department</h2>
+                            </group>
+                        </group>
+                <h2 class='text-primary' style="margin-top: 20px;">Faculty
+                           &amp; Department</h2>
                     <group>
                         <group>
                             <field name="academic_faculty_id"/>
-                        </group>
+                            </group>
                         <group>
                             <field name="department_id"/>
-                        </group>        
-                    </group>
-                <h2>Semester</h2>
+                            </group>
+                        </group>
+                <h2 class='text-primary' style="margin-top: 20px;">
+                            Semester</h2>
                     <group>
                         <group>
                             <field name="semester_id"/>
                             <field name="semester_type"/>
-                        </group>
+                            </group>
                         <group>
                      
                             <field name="semester_year"/>
+                            </group>
                         </group>
-                    </group>
-                    <h2>Apply Type</h2>
+                    <h2 class='text-primary' style="margin-top: 20px;">Apply
+                            Type</h2>
                         <group>
                             <group>
                                 <field name="is_local_bachelor_program_hsc"/>
@@ -99,15 +103,20 @@
                                 <field name="is_international_masters_program"/>
                             </group>
                         </group>
-                        <h2>Available in Campus</h2>
+                        <h2 class='text-primary' style="margin-top: 20px;">Available
+                            in Campus</h2>
                            <group>
-                              <group><field name ="campus_id"/></group>
-                          </group> 
-                        <h2 class="white" >Admission Eligibility</h2>
+                              <group><field name ="campus_id"/>
+                            </group>
+                        </group> 
+                        <h2 class='text-primary' style="margin-top: 20px;">Admission
+                            Eligibility</h2>
                            <group>
-                              <group><field name ="admission_eligibility"/></group>
-                          </group>   
-                          <h2>Application</h2>
+                              <group><field name ="admission_eligibility"/>
+                            </group>
+                        </group>   
+                          <h2 class='text-primary' style="margin-top: 20px;">
+                            Application</h2>
                           <field name="application_ids" />
               </sheet>
           </form>
