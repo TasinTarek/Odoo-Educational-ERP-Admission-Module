@@ -40,8 +40,8 @@
                         <button name="confirm_cancel"
                             string="Cancel"
                             type="object"
-                             />
-<!--                         
+                        />
+                        <!--                         
                         <button name="generate_student_id_wizard"
                             string="Generate Student ID"
                             type="object"
@@ -70,7 +70,7 @@
                             string="Chechk Eligibility"
                             type="object"
                             class="oe_highlight" /> -->
-                        </header>
+                    </header>
                     <!-- Name Section -->
                     <sheet>
                         <field name="applicant_photo" widget="image" class="oe_right oe_avatar" />
@@ -192,25 +192,417 @@
                                     />
                                 </group>
                             </page>
+                            <!-- Educational Details -->
                             <page string="Educational Detail">
-                                <!-- <group col="4" colspan="4">
-                                    <field name="prev_institute_id"/>
-                                    <field name="prev_course_id"/>
-                                    <field name="prev_result"/>
-                                </group> -->
+                                <h2 class='text-primary' style="margin-top: 20px;">
+                                    SSC &amp; HSC</h2>
+                                <group>
+                                    <group>
+                                        <field name="education_board_ssc_id" />
+                                        <field name="roll_number_ssc" />
+                                        <field name="ssc_grade" />
+                                        <field name="is_golder_ssc" />
+                                    </group>
+                                    <group>
+                                        <field name="year_ssc" />
+                                        <field name="registration_number_ssc" />
+                                        <field name="ssc_gpa" />
+                                        <field name="ssc_certificate" />
+                                    </group>
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="education_board_hsc_id" />
+                                        <field name="roll_number_hsc" />
+                                        <field name="hsc_grade" />
+                                        <field name="is_golder_hsc" />
+                                    </group>
+                                    <group>
+                                        <field name="year_hsc" />
+                                        <field name="registration_number_hsc" />
+                                        <field name="hsc_gpa" />
+                                        <field name="hsc_certificate" />
+                                    </group>
+                                </group>
+                                <h2 class='text-primary' style="margin-top: 20px;">
+                                    O Level &amp; A Level</h2>
+                                <group>
+                                    <group>
+                                        <feild name="education_board_o_level_id" />
+                                        <field name="o_level_certificate" />
+                                    </group>
+                                    <group>
+                                        <field name="passing_year_o_level" />
+                                    </group>
+                                </group>
+                                <group>
+                                    <group>
+                                        <feild name="education_board_a_level_id" />
+                                        <field name="a_level_certificate" />
+                                    </group>
+                                    <group>
+                                        <field name="passing_year_a_level" />
+                                    </group>
+                                </group>
                             </page>
                             <page string="Personal Detail">
+                                <group>
+                                    <group>
+                                        <field name="gender" />
+                                        <field name="email" />
+                                        <field name="phone" />
+                                        <field name="alternate_email" />
+                                    </group>
+                                    <group>
+                                        <field name="birth_date" />
+                                        <field name="mobile" />
+                                        <field name="marital_status" />
+                                        <field name="emergency_contact_info" />
+                                    </group>
+                                </group>
 
-                            </page>
-                            <page string="Family Detail">
+                                <h4 class='text-primary' style="margin-top: 20px;">
+                                    Permanent Address</h4>
+                                    <div>
+                                        <field name="street" placeholder="Street..." />
+                                        <field name="street2" />
+                                        <div class="address_format">
+                                            <field name="city" placeholder="City"
+                                                style="width: 40%%" />
+                                            <field name="state_id" options='{"no_open": True}'
+                                                placeholder="State" style="width: 24%%" />
+                                            <field name="zip" placeholder="ZIP" style="width: 34%%" />
+                                        </div>
+                                        <field name="country_id" placeholder="Country"
+                                            options='{"no_open": True}' />
 
-                            </page>
-                            <page string="Manual Document ">
+                                    </div>
+                                <group>    
+                                    <field name="permanent_district_id" />
+                                    <field name="is_permanent_present_address_same" />
+                                </group>
+                                <div>
+                                    <h4 class='text-primary' style="margin-top: 20px;">
+                                        Present Address</h4>
+                                    <field name="street" placeholder="Street..."
+                                        style="width: 100%%" />
+                                    <field name="street2" style="width: 100%%" />
+                                    <div>
+                                        <field name="city" placeholder="City" style="width: 40%%" />
+                                        <field name="state_id" options='{"no_open": True}'
+                                            placeholder="State" style="width: 24%%" />
+                                        <field name="zip" placeholder="ZIP" style="width: 34%%" />
+                                    </div>
+                                    <field name="country_id" placeholder="Country"
+                                        options='{"no_open": True}' />
 
-                            </page>
-                            <page string="Payment Detail">
+                                </div>
+                                <group>
+                                    <field name="present_district_id" />
+                                    <field name="mailing_address" />
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="religion" />
+                                        <field name="whatsapp_number" />
+                                        <field name="birth_place" />
+                                        <field name="nationality" />
+                                        <field name="passport_no" />
+                                        <field name="visa_no" />
+                                    </group>
+                                    <group>
+                                        <field name="blood_group" />
+                                        <field name="social_network" />
+                                        <field name="national_country_id" />
+                                        <field name="national_id_no" />
+                                        <field name="passport_expire_date" />
+                                        <field name="visa_expire_date" />
+                                    </group>
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="passport" />
+                                    </group>
+                                    <group>
+                                        <field name="signature" />
+                                    </group>
+                                </group>
+                                <group class="text-primary" string="Please tick how you know the Daffodil International University (DIU)"
+                                    col="2">
+                                    <group>
+                                        <group>
+                                            <field name="know_the_diu_from_website"
+                                            />
+                                            <field name="know_the_diu_from_newspaper"
+                                            />
+                                        </group>
+                                        <group>
+                                            <field name="know_the_diu_from_social_media"
+                                            />
+                                            <field name="know_the_diu_from_sms"
+                                            />
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <group>
+                                            <field name="know_the_diu_from_daffodil_family"
+                                            />
+                                            <field name="know_the_diu_from_diu_student"
+                                            />
+                                        </group>
+                                        <group>
+                                            <field name="know_the_diu_from_diu_employee"
+                                            />
+                                            <field name="know_the_diu_from_others"
+                                            />
+                                        </group>
+                                    </group>
+                                    <group name="tick_if_applicable"
+                                        string="Tick the following box if applicable" col="4">
+                                        <field name="is_parents_freedom_fighter"
+                                             />
+                                        <field name="is_tribal"
+                                             />
+                                        <field name="is_physical_disorder"
+                                             />
+                                        <field name="is_first_division_player"
+                                             />
+                                    </group>
+                                </group>
+                                    
+                                </page>
 
+                                <!-- Family Details -->
+                            <page name="family_detail" string="Family Detail">
+                        <group name="parents_info" string="Parents Information">
+                            <group>
+                                <field name="father_name" string="Father's Name" />
+                                <field name="father_contact_number" />
+                                <field name="father_email" />
+                                <field name="father_national_id" />
+                                <field name="father_passport" />
+                                <field name="father_birthday" />
+                                <label for="father_age"/>
+                                <div>
+                                    <field name="father_age" class="oe_inline" nolabel="1"/> Year(s)
+                                </div>
+                                <field name="father_occupation"/>
+                                <field name="father_company"/>
+                                <field name="father_designation"/>
+                                <!-- <field name="father_annual_income" widget="monetary" attrs="{'readonly': [('state','=','done')]}"/> -->
+                                <label for="father_annual_income"/>
+                                <div>
+                                    <field name="father_annual_income" class="oe_inline" nolabel="1"/>
+                                    <field name="father_annual_income_currency_symbol" class="oe_inline" style="margin: 5px;"/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="mother_name" string="Mother's Name" />
+                                <field name="mother_contact_number"/>
+                                <field name="mother_email"/>
+                                <field name="mother_national_id"/>
+                                <field name="mother_passport"/>
+                                <field name="mother_birthday"/>
+                                <label for="mother_age"/>
+                                <div>
+                                    <field name="mother_age" class="oe_inline" nolabel="1"/> Year(s)
+                                </div>
+                                <field name="mother_occupation"/>
+                                <field name="mother_company"/>
+                                <field name="mother_designation"/>
+                                <!-- <field name="mother_annual_income" widget="monetary" attrs="{'readonly': [('state','=','done')]}"/> -->
+                                <label for="mother_annual_income"/>
+                                <div>
+                                    <field name="mother_annual_income" class="oe_inline" nolabel="1"/>
+                                    <field name="mother_annual_income_currency_symbol" class="oe_inline" style="margin: 5px;"/>
+                                </div>
+                            </group>
+                        </group>
+                        <group name="local_guardian" string="Local Guardian" col="4">
+                            <field name="local_guardian_name"/>
+                            <field name="local_guardian_relation"/>
+                            <field name="local_guardian_contact_number"/>
+                            <field name="local_guardian_email"/>
+                            <field name="local_guardian_national_id"/>
+                            <field name="local_guardian_passport"/>
+                        </group> 
+                        <group col="1">
+                            <label for="local_guardian_street" string="Address"/>
+                            <div>
+                                <field name="local_guardian_street" placeholder="Street..."/>
+                                <field name="local_guardian_street2"/>
+                                <div class="address_format">
+                                    <field name="local_guardian_city" placeholder="City" style="width: 40%"/>
+                                    <field name="local_guardian_state_id" options="{'no_open':True, 'no_quick_create':True, 'no_create_edit':True}" placeholder="State" style="width: 25%"/>
+                                    <field name="local_guardian_zip" placeholder="ZIP" style="width: 35%"/>
+                                </div>
+                                <field name="local_guardian_country_id" placeholder="Country" options="{'no_open':True, 'no_quick_create':True, 'no_create_edit':True}" />
+                            </div>
+                        </group> 
+                        <group name="expanse_bearer" string="Expense Bearer">
+                            <field name="expanse_bearer" widget="radio"/>
+                        </group>
+                        <group col="4">
+                            <field name="expanse_bearer_name"/>
+                            <field name="expanse_bearer_relation"/>
+                            <field name="expanse_bearer_contact_number"/>
+                            <field name="expanse_bearer_national_id"/>
+                            <field name="expanse_bearer_passport"/>
+                            <field name="expanse_bearer_birthday"/>
+                            <label for="expanse_bearer_age"/>
+                            <div>
+                                <field name="expanse_bearer_age" class="oe_inline" nolabel="1" /> Year(s)
+                            </div>
+                            <field name="expanse_bearer_employer_name" string="Employer's Name"/>
+                            <div>
+                                <field name="expanse_bearer_annual_income" class="oe_inline" nolabel="1"/>
+                                <field name="expanse_bearer_annual_income_currency_symbol" class="oe_inline" style="margin: 5px;"/>
+                            </div>
+                        </group>
+                        <label for="expanse_bearer_street" string="Address"/>
+                        <div>
+                            <field name="expanse_bearer_street" placeholder="Street..."/>
+                            <field name="other_street2"/>
+                            <div class="address_format">
+                                <field name="expanse_bearer_city" placeholder="City" style="width: 40%"/>
+                                <field name="expanse_bearer_state_id" options="{'no_open':True, 'no_quick_create':True, 'no_create_edit':True}" placeholder="State" style="width: 25%"/>
+                                <field name="expanse_bearer_zip" placeholder="ZIP" style="width: 35%"/>
+                            </div>
+                            <field name="expanse_bearer_country_id" placeholder="Country" options="{'no_open': True, 'no_quick_create':True, 'no_create_edit':True}"/>
+                        </div>
+                        <group col="4">
+                            <field name="expanse_bearer_national_id_attachment"/>
+                            <field name="expanse_bearer_signature_attachment"/>
+                        </group>
+                        <group name="student_group_life_insurance" string="Student Group Life Insurance (Nominee for the Students Insurance)">
+                            <field name="life_insurance" widget="radio"/>
+                        </group>
+                        <group col="4">
+                            <field name="life_insurance_name"/>
+                            <field name="life_insurance_relation"/>
+                            <field name="life_insurance_contact_number"/>
+                            <field name="life_insurance_email"/>
+                            <field name="life_insurance_national_id"/>
+                            <field name="life_insurance_passport"/>
+                        </group>
+                        <group name="legal_guardian" string="Legal Guardian (Name &amp; Signature with Date)" col="4">
+                            <field name="legal_guardian_name"/>
+                            <field name="legal_guardian_date"/>
+                            <field name="legal_guardian_signature_attachment"/>
+                        </group> 
+                    </page>
+<!-- Manual Document -->
+                            <page name="manual_document" string="Manual Document">
+                                <group name="document_received_info" string="Document Received"
+                                    col="1">
+                                    <h5>
+                                        (a) 5 copies of passport size recent formal photographs
+                                    </h5>
+                                    <group>
+                                        
+                                        <field name="is_manual_photographs" nolabel="1"
+                                        />
+                                    </group>
+                                    <h5>
+                                        (b) Photocopies of Certificate:
+                                    </h5>
+                                    <group>
+                                        
+                                        <field name="is_manual_ssc_certificate"
+                                        />
+                                        <field name="is_manual_hsc_certificate"
+                                        />
+                                        <field name="is_manual_bachelor_certificate"
+                                        />
+                                    </group>
+                                    <h5>
+                                        (c) Photocopies of Transcript:
+                                    </h5>
+                                    <group>
+                                        
+                                        <field name="is_manual_ssc_transcript"
+                                        />
+                                        <field name="is_manual_hsc_transcript"
+                                        />
+                                        <field name="is_manual_bachelor_transcript"
+                                        />
+                                    </group>
+                                    <h5>
+                                        (d) Photocopies of NID/ Birth Certificate/ Passport:
+                                    </h5>
+                                    <group>
+                                        
+
+                                        <field name="is_manual_photocopies_student"
+                                        />
+
+                                        <field name="is_manual_photocopies_guardian"
+                                        />
+                                    </group>
+                                    <h5>
+                                        (e) Attested copies of other relevant Certificates (if
+                                        any):
+                                    </h5>
+                                    <group>
+                                        
+                                        <field name="is_manual_copies_other_relevant_certificate"
+                                            nolabel="1" />
+                                    </group>
+                                    <h5 style="margin-top: 10px;">
+                                        Bring all Main Certificates and Transcripts for
+                                        verification
+                                        during admission:
+
+                                    </h5>
+                                    <group>
+                                        
+                                        <field name="is_manual_bring_main_certificates_transcripts"
+                                            nolabel="1" />
+                                        
+                                    </group>
+                                    <p style="margin-top: 10px; font-style: italic;">
+                                        Guidelines to be followed: Incomplete or incorrect
+                                        application will be rejected.
+                                        Only eligible and selected candidates in Admission Test
+                                        will
+                                        be permitted to take admission.
+                                        Any kind of persuasion will disqualify the candidate.
+                                    </p>
+                                </group>
                             </page>
+<!-- Payment Details -->
+                            <page name="payment_detail" string="Payment Detail">
+                                <!-- <h3>Invoice &amp; Payment</h3>
+                                <group name="invoice_and_payment_admission_form_fee"
+                                    string="Admission Form Fee">
+                                    <group>
+                                        <field name="account_move_id"/>
+                                        <field name="invoice_amount_total_string" />
+                                        <field name="invoice_amount_paid_string" />
+                                        <field name="invoice_amount_residual_string" />
+                                    </group>
+                                    <group>
+                                        <field name="invoice_payment_state"/>
+                                        <field name="invoice_payment_mediums" />
+                                        <field name="invoice_payment_date" />
+                                    </group>
+                                </group>
+                                <group name="invoice_and_payment_admission_fee"
+                                    string="Admission Fee">
+                                    <group>
+                                        <field name="admission_fee_account_move_id"/>
+                                        <field name="admission_fee_invoice_amount_total_string" />
+                                        <field name="admission_fee_invoice_amount_paid_string" />
+                                        <field name="admission_fee_invoice_amount_residual_string" />
+                                    </group>
+                                    <group>
+                                        <field name="admission_fee_invoice_payment_state"/>
+                                        <field name="admission_fee_invoice_payment_mediums"/>
+                                        <field name="admission_fee_invoice_payment_date"/>
+                                    </group>
+                                </group> -->
+                                
+                            </page> 
                         </notebook>
 
 
