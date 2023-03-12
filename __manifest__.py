@@ -21,6 +21,7 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base','mail',
+                'se_education_core',
                 'se_campus_facility'],
 
     # always loaded

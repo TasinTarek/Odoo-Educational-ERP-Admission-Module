@@ -2,9 +2,15 @@ from odoo import fields,models,api
 
 class SeApplication(models.Model):
     _name = 'se.application'
-    _inherit = ('se.venue','mail.thread')
+    
+    _inherit = ['se.student',
+                'se.venue', 
+                'mail.thread']
     _description = 'Se Application'
 
+    academic_id = fields.Many2one('se.student', string='Students Details')
+    application_academic_ids = fields.One2many(
+        related='academic_id.academic_educational_information_ids', string='Academic Details')
 
     first_name = fields.Char(
         'First Name', required=True, translate=True)
@@ -16,14 +22,14 @@ class SeApplication(models.Model):
     applicant_photo = fields.Image(string='Photo', attachment=True, store=True)
       
     is_alumni = fields.Boolean(
-        string='Is Alumni ?',
-    )
+         string='Is Alumni ?',
+     )
     student_id = fields.Char(
         string='Student ID'
     )
-    # register_id = fields.Char(
-    #     string='Register Id'
-    # )
+    register_id = fields.Char(
+        string='Register Id'
+     )
     
     register_id = fields.Many2one(
         string='Register ID',
@@ -155,83 +161,63 @@ class SeApplication(models.Model):
     confirm_cancel = fields.Char(
         string='Cancel',
     )
-
-    ssc_gpa = fields.Float(string='SSC GPA')
-    ssc_grade = fields.Char(string='SSC Grade')
-    ssc_certificate = fields.Binary(string='SSC Academic Transcript',
-                                    attachment=True, store=True, help="Applicant SSC Certificate.")
-    is_golder_ssc = fields.Boolean(string='Is Golder in SSC?')
-    # education_board_ssc_id = fields.Many2one(comodel_name='op.education.board', string='Education Board', domain=[
-    #                                          ('academic_medium_type', '=', 'general')])
+    # Education Details Old
+    # ssc_gpa = fields.Float(string='SSC GPA')
+    # ssc_grade = fields.Char(string='SSC Grade')
+    # ssc_certificate = fields.Binary(string='SSC Academic Transcript',
+    #                                 attachment=True, store=True, help="Applicant SSC Certificate.")
+    # is_golder_ssc = fields.Boolean(string='Is Golder in SSC?')
+   
     
-    education_board_ssc_id = fields.Selection(
-        string='Education Board',
-        selection=[('dhaka', 'Dhaka'), ('chattogram', 'Chattogram')]
-    )
+    # education_board_ssc_id = fields.Selection(
+    #     string='Education Board',
+    #     selection=[('dhaka', 'Dhaka'), ('chattogram', 'Chattogram')]
+    # )
      
-    roll_number_ssc = fields.Char(string='Roll No.')
-    registration_number_ssc = fields.Char(string='Reg. No.')
+    # roll_number_ssc = fields.Char(string='Roll No.')
+    # registration_number_ssc = fields.Char(string='Reg. No.')
     
-    year_ssc = fields.Char(string='Year', stored=True)
+    # year_ssc = fields.Char(string='Year', stored=True)
     
-    # admission_board_result_ssc_ids = fields.Many2one(
-    #     'op.admission.board.result.general', string='Admission Board Results of SSC')
-    # year_ssc = fields.Selection(lambda self: self._get_years(), string='Year', stored=True)
-    hsc_gpa = fields.Float(string='HSC GPA')
-    hsc_grade = fields.Char(string='HSC Grade')
-    hsc_certificate = fields.Binary(string='HSC Academic Transcript',
-                                     attachment=True, store=True, help="Applicant HSC Certificate.")
-    is_golder_hsc = fields.Boolean(string='Is Golder in HSC?')
-    # education_board_hsc_id = fields.Many2one(comodel_name='op.education.board', string='Education Board', domain=[
-    #                                           ('academic_medium_type', '=', 'general')])
-    education_board_hsc_id = fields.Selection(
-        string='Education Board',
-        selection=[('dhaka', 'Dhaka'), ('chattogram', 'Chattogram')]
-    )
-    roll_number_hsc = fields.Char(string='Roll No.')
-    registration_number_hsc = fields.Char(string='Reg. No.')
-    # # year_hsc = fields.Selection(lambda self: self._get_years(), string='Year', stored=True)
-    year_hsc = fields.Char(string='Year', stored=True)
-    # admission_board_result_hsc_ids = fields.One2many(
-    #     'op.admission.board.result.general', 'admission_id', string='Admission Board Results of HSC', domain=[('exam_name_ref', '=', 'hsc')])
-    # is_get_educational_board_result_ssc = fields.Boolean(
-    #     string='Is Get Education Board Result of SSC?', default=False, readonly=True)
-    # is_get_educational_board_result_hsc = fields.Boolean(
-    #     string='Is Get Education Board Result of HSC?', default=False, readonly=True)
+   
+    # hsc_gpa = fields.Float(string='HSC GPA')
+    # hsc_grade = fields.Char(string='HSC Grade')
+    # hsc_certificate = fields.Binary(string='HSC Academic Transcript',
+    #                                  attachment=True, store=True, help="Applicant HSC Certificate.")
+    # is_golder_hsc = fields.Boolean(string='Is Golder in HSC?')
+   
+    # education_board_hsc_id = fields.Selection(
+    #     string='Education Board',
+    #     selection=[('dhaka', 'Dhaka'), ('chattogram', 'Chattogram')]
+    # )
+    # roll_number_hsc = fields.Char(string='Roll No.')
+    # registration_number_hsc = fields.Char(string='Reg. No.')
+   
+    # year_hsc = fields.Char(string='Year', stored=True)
+   
+    
 
-    # education_board_o_level_id = fields.Many2one(comodel_name='op.education.board', string='Exam Board', domain=[
-    #                                              ('academic_medium_type', '=', 'english'), ('is_allow_for_o_level', '=', True)])
-    # # passing_year_o_level = fields.Selection(lambda self: self._get_years(), string='Passing Year', stored=True)
-    passing_year_o_level = fields.Char(string='Passing Year', stored=True)
-    o_level_certificate = fields.Binary(
-         string='O-Level Academic Transcript', attachment=True, store=True, help="Applicant O-Level Certificate.")
-    education_board_o_level_id = fields.Selection(
-        string='Education Board',
-        selection=[('british', 'British'), ('american', 'American')]
-    )
-    # admission_board_result_o_level_ids = fields.One2many(
-    #     'op.admission.board.result.english', 'admission_id', string='Admission Board Results of O-Level', domain=[('exam_name_ref', '=', 'o_level')])
-    # education_board_a_level_id = fields.Many2one(comodel_name='op.education.board', string='Exam Board', domain=[
-    #                                              ('academic_medium_type', '=', 'english'), ('is_allow_for_a_level', '=', True)])
-    # # passing_year_a_level = fields.Selection(lambda self: self._get_years(), string='Passing Year', stored=True)
-    passing_year_a_level = fields.Char(string='Passing Year', stored=True)
-    a_level_certificate = fields.Binary(
-         string='A-Level Academic Transcript', attachment=True, store=True, help="Applicant A-Level Certificate.")
-    education_board_a_level_id = fields.Selection(
-        string='Education Board',
-        selection=[('british', 'British'), ('american', 'American')]
-    )
-    # admission_board_result_a_level_ids = fields.One2many(
-    #     'op.admission.board.result.english', 'admission_id', string='Admission Board Results of A-Level', domain=[('exam_name_ref', '=', 'a_level')])
-    # admission_board_result_all_certificate = fields.Binary(
-    #     string='All Academic Certificate', attachment=True, store=True, help="Attach all the Academic Certificate in single document (PDF).")
-    # admission_board_result_all_ids = fields.One2many(
-    #     'op.admission.board.result.all', 'admission_id', string='Admission Board Results')
+    
+    # passing_year_o_level = fields.Char(string='Passing Year', stored=True)
+    # o_level_certificate = fields.Binary(
+    #      string='O-Level Academic Transcript', attachment=True, store=True, help="Applicant O-Level Certificate.")
+    # education_board_o_level_id = fields.Selection(
+    #     string='Education Board',
+    #     selection=[('british', 'British'), ('american', 'American')]
+    # )
+    
+   
+    # a_level_certificate = fields.Binary(
+    #      string='A-Level Academic Transcript', attachment=True, store=True, help="Applicant A-Level Certificate.")
+    # education_board_a_level_id = fields.Selection(
+    #     string='Education Board',
+    #     selection=[('british', 'British'), ('american', 'American')]
+    # )
 
-    # admission_achievement_ids = fields.One2many(
-    #     'op.admission.achievement', 'admission_id', string='Admission Applicant Achievements')
-    # admission_professional_experience_ids = fields.One2many(
-    #     'op.admission.professional.experience', 'admission_id', string='Admission Applicant Professional Experiences')
+    # Education Details New
+
+
+   
 
 # Personal Details
     signature = fields.Binary(string='Signature', attachment=True, store=True, help="Applicant signature.")
@@ -495,20 +481,21 @@ class SeApplication(models.Model):
     is_manual_bring_main_certificates_transcripts = fields.Boolean(string='Manual bring Main Certificates and Transcripts')
     
     # Payment Details
-    # account_move_id = fields.Char(string="Invoice")
-    # invoice_amount_total_string = fields.Char(string="Total Amount")
-    # invoice_amount_residual_string = fields.Char(string="Amount Due")
-    # invoice_amount_paid_string = fields.Char(string="Amount Paid")
-    # invoice_payment_state = fields.Selection(string="Payment Status")
-    # invoice_payment_mediums = fields.Date(string="Payment Date")
+    account_move_id = fields.Char(string="Invoice")
+    invoice_amount_total_string = fields.Char(string="Total Amount")
+    invoice_amount_residual_string = fields.Char(string="Amount Due")
+    invoice_amount_paid_string = fields.Char(string="Amount Paid")
+    invoice_payment_state = fields.Char(string="Payment Status")
+    invoice_payment_date = fields.Date(string="Payment Date")
+    invoice_payment_mediums = fields.Char(string='Payment Mediums')
 
    
-    # admission_fee_account_move_id = fields.Char(string="Invoice")
-    # admission_fee_invoice_amount_total_string = fields.Char(string="Total Amount")
-    # admission_fee_invoice_amount_residual_string = fields.Char(string="Amount Due")
-    # admission_fee_invoice_amount_paid_string = fields.Char(string="Amount Paid")
-    # admission_fee_invoice_payment_state = fields.Selection(string="Payment Status")
-    # admission_fee_invoice_payment_state_allow_rel = fields.Selection(string="Payment Status (Based on Allow Amount)")
-    # admission_fee_invoice_payment_mediums = fields.Text()
-    # admission_fee_invoice_payment_date = fields.Date(string="Payment Date")
+    admission_fee_account_move_id = fields.Char(string="Invoice")
+    admission_fee_invoice_amount_total_string = fields.Char(string="Total Amount")
+    admission_fee_invoice_amount_residual_string = fields.Char(string="Amount Due")
+    admission_fee_invoice_amount_paid_string = fields.Char(string="Amount Paid")
+    admission_fee_invoice_payment_state = fields.Char(string="Payment Status")
+    admission_fee_invoice_payment_state_allow_rel = fields.Char(string="Payment Status (Based on Allow Amount)")
+    admission_fee_invoice_payment_mediums = fields.Text()
+    admission_fee_invoice_payment_date = fields.Date(string="Payment Date")
     
