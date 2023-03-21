@@ -3,26 +3,39 @@ from odoo import fields,models,api
 class SeApplication(models.Model):
     _name = 'se.application'
     
-    _inherit = ['se.student',
-                'se.venue', 
-                'mail.thread']
-    _description = 'Se Application'
-
-    academic_id = fields.Many2one('se.student', string='Students Details')
-    application_academic_ids = fields.One2many(
-        related='academic_id.academic_educational_information_ids', string='Academic Details')
-
-    first_name = fields.Char(
-        'First Name', required=True, translate=True)
-    middle_name = fields.Char(
-        'Middle Name', translate=True)
-    last_name = fields.Char(
-        'Last Name', required=True)
+    _inherit = ['se.venue', 
+                'mail.thread',
+                ]
+    # _inherits = {"res.partner": "partner_id"}
     
+    _description = 'Se Application'
+    
+    state = fields.Selection(string='Status',
+                             selection=[('draft','Draft'),('online','Online Admission'),('confirm','Confirmed'),
+                                        ('admission','Admission Confirm'),('reject','Rejected'),('pending','Pending'),
+                                        ('canceled','Canceled'),('done','Done')
+    ])
+    
+    first_name = fields.Char()
+    middle_name = fields.Char()
+    last_name = fields.Char()
+    name =fields.Char()
+
+    @api.onchange('first_name', 'middle_name', 'last_name')
+    def _onchange_name(self):
+        if not self.middle_name:
+            self.name = str(self.first_name) + " " + str(
+                self.last_name
+            )
+        else:
+            self.name = str(self.first_name) + " " + str(
+                self.middle_name) + " " + str(self.last_name)
+            
+
     applicant_photo = fields.Image(string='Photo', attachment=True, store=True)
       
     is_alumni = fields.Boolean(
-         string='Is Alumni ?',
+         string='Is Alumni ?'
      )
     student_id = fields.Char(
         string='Student ID'
@@ -162,59 +175,60 @@ class SeApplication(models.Model):
         string='Cancel',
     )
     # Education Details Old
-    # ssc_gpa = fields.Float(string='SSC GPA')
-    # ssc_grade = fields.Char(string='SSC Grade')
-    # ssc_certificate = fields.Binary(string='SSC Academic Transcript',
-    #                                 attachment=True, store=True, help="Applicant SSC Certificate.")
-    # is_golder_ssc = fields.Boolean(string='Is Golder in SSC?')
+    ssc_gpa = fields.Float(string='SSC GPA')
+    ssc_grade = fields.Char(string='SSC Grade')
+    ssc_certificate = fields.Binary(string='SSC Academic Transcript',
+                                    attachment=True, store=True, help="Applicant SSC Certificate.")
+    is_golder_ssc = fields.Boolean(string='Is Golder in SSC?')
    
     
-    # education_board_ssc_id = fields.Selection(
-    #     string='Education Board',
-    #     selection=[('dhaka', 'Dhaka'), ('chattogram', 'Chattogram')]
-    # )
+    education_board_ssc_id = fields.Selection(
+        string='Education Board',
+        selection=[('dhaka', 'Dhaka'), ('chattogram', 'Chattogram')]
+    )
      
-    # roll_number_ssc = fields.Char(string='Roll No.')
-    # registration_number_ssc = fields.Char(string='Reg. No.')
+    roll_number_ssc = fields.Char(string='Roll No.')
+    registration_number_ssc = fields.Char(string='Reg. No.')
     
-    # year_ssc = fields.Char(string='Year', stored=True)
+    year_ssc = fields.Char(string='Year', stored=True)
     
    
-    # hsc_gpa = fields.Float(string='HSC GPA')
-    # hsc_grade = fields.Char(string='HSC Grade')
-    # hsc_certificate = fields.Binary(string='HSC Academic Transcript',
-    #                                  attachment=True, store=True, help="Applicant HSC Certificate.")
-    # is_golder_hsc = fields.Boolean(string='Is Golder in HSC?')
+    hsc_gpa = fields.Float(string='HSC GPA')
+    hsc_grade = fields.Char(string='HSC Grade')
+    hsc_certificate = fields.Binary(string='HSC Academic Transcript',
+                                     attachment=True, store=True, help="Applicant HSC Certificate.")
+    is_golder_hsc = fields.Boolean(string='Is Golder in HSC?')
    
-    # education_board_hsc_id = fields.Selection(
-    #     string='Education Board',
-    #     selection=[('dhaka', 'Dhaka'), ('chattogram', 'Chattogram')]
-    # )
-    # roll_number_hsc = fields.Char(string='Roll No.')
-    # registration_number_hsc = fields.Char(string='Reg. No.')
+    education_board_hsc_id = fields.Selection(
+        string='Education Board',
+        selection=[('dhaka', 'Dhaka'), ('chattogram', 'Chattogram')]
+    )
+    roll_number_hsc = fields.Char(string='Roll No.')
+    registration_number_hsc = fields.Char(string='Reg. No.')
    
-    # year_hsc = fields.Char(string='Year', stored=True)
+    year_hsc = fields.Char(string='Year', stored=True)
    
     
 
     
-    # passing_year_o_level = fields.Char(string='Passing Year', stored=True)
-    # o_level_certificate = fields.Binary(
-    #      string='O-Level Academic Transcript', attachment=True, store=True, help="Applicant O-Level Certificate.")
-    # education_board_o_level_id = fields.Selection(
-    #     string='Education Board',
-    #     selection=[('british', 'British'), ('american', 'American')]
-    # )
+    passing_year_o_level = fields.Char(string='Passing Year', stored=True)
+    o_level_certificate = fields.Binary(
+         string='O-Level Academic Transcript', attachment=True, store=True, help="Applicant O-Level Certificate.")
+    education_board_o_level_id = fields.Selection(
+        string='Education Board',
+        selection=[('british', 'British'), ('american', 'American')]
+    )
     
    
-    # a_level_certificate = fields.Binary(
-    #      string='A-Level Academic Transcript', attachment=True, store=True, help="Applicant A-Level Certificate.")
-    # education_board_a_level_id = fields.Selection(
-    #     string='Education Board',
-    #     selection=[('british', 'British'), ('american', 'American')]
-    # )
+    a_level_certificate = fields.Binary(
+         string='A-Level Academic Transcript', attachment=True, store=True, help="Applicant A-Level Certificate.")
+    education_board_a_level_id = fields.Selection(
+        string='Education Board',
+        selection=[('british', 'British'), ('american', 'American')]
+    )
+    passing_year_a_level = fields.Char(string='Passing Year', stored=True)
 
-    # Education Details New
+
 
 
    
@@ -499,3 +513,34 @@ class SeApplication(models.Model):
     admission_fee_invoice_payment_mediums = fields.Text()
     admission_fee_invoice_payment_date = fields.Date(string="Payment Date")
     
+
+    # Functions
+
+    def submit_form(self):
+        self.state = 'submit'
+
+    def admission_confirm(self):
+        self.state = 'admission'
+
+    def confirm_in_progress(self):
+        for record in self:
+            record.state = 'confirm'
+
+    def confirm_rejected(self):
+        self.state = 'reject'
+
+    def confirm_pending(self):
+        self.state = 'pending'
+
+    def confirm_to_draft(self):
+        self.state = 'draft'
+
+    def confirm_cancel(self):
+        self.state = 'cancel'
+        # if self.is_student and self.student_id.fees_detail_ids:
+        #     self.student_id.fees_detail_ids.state = 'cancel'
+
+    def payment_process(self):
+        self.state = 'fees_paid'
+
+ 

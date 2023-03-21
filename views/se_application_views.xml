@@ -10,11 +10,8 @@
             <field name="priority" eval="16" />
             <field name="active" eval="True" />
             <field name="arch" type="xml">
-                <tree string="model_tree" create="true" delete="true" edit="true">
-                    <field name="first_name" />
-                    <field name="middle_name" />
-                    <field name="last_name" />
-
+                <tree>
+                   <field name="name" on_change="onchange_name" />
                 </tree>
             </field>
         </record>
@@ -32,44 +29,29 @@
             <field name="arch" type="xml">
                 <form string="Registration">
                     <header>
-
-                        <button name="submit_form"
-                            string="Submit"
+                        <button string="Submit" states="draft" class="oe_highlight" type="object"
+                            name="submit_form" />
+                        <button name="confirm_in_progress" states="submit,pending" string="Confirm"
                             type="object"
                             class="oe_highlight" />
-                        <button name="confirm_cancel"
-                            string="Cancel"
+                        <button string="Admission Confirm" class="oe_highlight" states="confirm"
                             type="object"
-                        />
-                        <!--                         
-                        <button name="generate_student_id_wizard"
-                            string="Generate Student ID"
-                            type="object"
-                            class="oe_highlight" />
-                        <button name="create_invoice_admission_applicant_admission_fee"
-                            string="Generate Admission Fee"
-                            type="object"
-                            class="oe_highlight" />
-                        <button name="action_admission_fee_allow_payment_amount_wizard"
-                            string="Allow Payment Amount for Admission Fee"
-                            type="object"
-                            class="oe_highlight" />
-                        <button name="action_admission_applicant_admitted_wizard"
-                            string="Confirm Admission"
-                            type="object"
-                            class="oe_highlight" />
-                        <button name="action_admission_applicant_admitted_wizard"
-                            string="Propose Student Email"
-                            type="object"
-                            class="oe_highlight" />
-                        <button name="get_educational_board_result_ssc_and_hsc"
-                            string="Get Educational Board Result"
-                            type="object"
-                            class="oe_highlight" />
-                        <button name="action_eligibility_checker_wizard"
-                            string="Chechk Eligibility"
+                            name="admission_confirm" />
+                        <!-- <button name="enroll_student" states="admission" string="Enroll"
                             type="object"
                             class="oe_highlight" /> -->
+                        <button name="confirm_rejected" states="confirm,confirm_pending"
+                            string="Reject" type="object" />
+                        <button name="confirm_pending" states="submit" string="Pending"
+                            type="object" />
+                        <button name="confirm_cancel" string="Cancel" type="object" />
+                        <button name="confirm_to_draft" states="pending,reject,cancel"
+                            string="Set to Draft"
+                            type="object" />
+                        <!-- <button name="open_student" states="done" string="Open Student Profile"
+                            type="object" /> -->
+                        <field name="state" widget="statusbar"
+                            statusbar_visible="draft,confirm,done" />
                     </header>
                     <!-- Name Section -->
                     <sheet>
@@ -78,21 +60,23 @@
                             <h1>
                                 <table>
                                     <tr>
-                                        <td>
-                                            <field name="first_name" placeholder="First Name"
-                                                required="1" style="padding-right:10px" />
-                                        </td>
-                                        <td>
-                                            <field name="middle_name" placeholder="Middle Name"
-                                                style="padding-right:10px" />
-                                        </td>
-                                        <td>
-                                            <field name="last_name" placeholder="Last Name"
-                                                required="1" style="padding-right:10px" />
-                                        </td>
-                                        <td>
 
+                                        <td>
+                                            <!-- <field name="first_name" placeholder="First Name"
+                                                required="1" style="padding-right:10px" /> -->
+                                                <field name="first_name" on_change="onchange_name" />
                                         </td>
+                                        <td>
+                                            <!-- <field name="middle_name" placeholder="Middle Name"
+                                                style="padding-right:10px" /> -->
+                                                <field name="middle_name" on_change="onchange_name" />
+                                        </td>
+                                        <td>
+                                            <!-- <field name="last_name" placeholder="Last Name"
+                                                required="1" style="padding-right:10px" /> -->
+                                                <field name="last_name" on_change="onchange_name" />
+                                            </td>
+                                        
                                     </tr>
                                 </table>
                             </h1>
@@ -105,7 +89,8 @@
 
                                 <group>
                                     <group>
-                                        <!-- <field name="is_alumni" /> -->
+                                        <field name="is_alumni" />
+                                        <field name="name"/>
                                         <field name="register_id" widget="selection" />
                                         <field name="application_number" />
                                         <field name="admission_date" />
@@ -193,7 +178,7 @@
                                 </group>
                             </page>
                             <!-- Educational Details -->
-                            <!-- <page string="Educational Detail">
+                            <page string="Educational Detail">
                                 <h2 class='text-primary' style="margin-top: 20px;">
                                     SSC &amp; HSC</h2>
                                 <group>
@@ -244,30 +229,10 @@
                                         <field name="passing_year_a_level" />
                                     </group>
                                 </group>
-                            </page> -->
-
-
-                            <!-- Educational Details New -->
-                            <page name="educational" string="Education">
-                                <group string="Educational Detail" name="education">
-                                    <field name="application_academic_ids" colspan="2"
-                                        nolabel="1">
-                                        <tree editable="bottom" class="tree_no_open text-center">
-                                            <field name="education_type_id" required="1" />
-                                            <field name="result_type" required="1" />
-                                            <field name="institution_name" required="1" />
-                                            <field name="passing_year" required="1" />
-                                            <field name="result_point" string="Result in Point"
-                                                attrs="{'invisible':[('result_type','!=','cgpa'), ('result_type','!=','gpa')]}" />
-                                            <field name="result_grade" string="Result in Grade"
-                                                attrs="{'invisible':[('result_type','!=','grade')]}" />
-                                            <field name="result_division"
-                                                string="Result in Division"
-                                                attrs="{'invisible':[('result_type','!=','division')]}" />
-                                        </tree>
-                                    </field>
-                                </group>
                             </page>
+
+
+                            
                             <!-- Personal Details -->
                             <page string="Personal Detail">
                                 <group>
@@ -489,7 +454,8 @@
                                     <label for="expanse_bearer_age" />
                                     <div>
                                         <field name="expanse_bearer_age" class="oe_inline"
-                                            nolabel="1" /> Year(s) </div>
+                                            nolabel="1" />
+                                        Year(s) </div>
                                     <field name="expanse_bearer_employer_name"
                                         string="Employer's Name" />
                                     <div>

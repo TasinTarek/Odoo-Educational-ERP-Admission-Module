@@ -1,0 +1,62 @@
+
+.color1 {
+    background-color: lightblue;
+}
+
+.color2 {
+    background-color:  rgb(194, 225, 177);
+}
+
+.color3 {
+    background-color:  rgb(194, 225, 177);
+}
+
+.color4 {
+    background-color:  rgb(194, 225, 177);
+}
+
+/* .minus_margin {
+    margin-right: -8.8rem
+} */
+
+.height {
+    max-height: 5rem;
+}
+
+.hidden {
+    display: none;
+}
+section {
+    display: none;
+}
+
+
+.step {
+                        clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 50%, 0% 0%);
+                        }
+                        @media (min-width: 576px) {
+                        .step {
+                        clip-path: polygon(80% 0%, 100% 50%, 80% 100%, 0% 100%, 0% 50%, 0% 0%);
+                        }
+                        }
+                        @media (min-width: 768px) {
+                        .step {
+                        clip-path: polygon(85% 0%, 100% 50%, 85% 100%, 0% 100%, 0% 50%, 0% 0%);
+                        }
+                        }
+                        @media (min-width: 992px) {
+                        .step {
+                        clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 0% 50%, 0% 0%);
+                        }
+                        }
+                        @media (min-width: 1200px) {
+                        .step {
+                        clip-path: polygon(95% 0%, 100% 50%, 95% 100%, 0% 100%, 0% 50%, 0% 0%);
+                        }
+                        @media only screen and (max-width: 576px) {
+                            #step1, #step2, #step3, #step4, #step5 {
+                              clip-path: none;
+                            }
+}
+
+                        }

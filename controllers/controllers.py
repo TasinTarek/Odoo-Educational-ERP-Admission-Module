@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# from odoo import http
+from odoo import http
+from odoo.http import request
 
-
-# class SeAdmission(http.Controller):
-#     @http.route('/se_admission/se_admission', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
+class SeAdmission(http.Controller):
+     @http.route('/se_admission/se_application', website=True, auth='public')
+     def index(self, **kw):
+         return request.render("se_admission.admission_portal_form",{})
 
 #     @http.route('/se_admission/se_admission/objects', auth='public')
 #     def list(self, **kw):

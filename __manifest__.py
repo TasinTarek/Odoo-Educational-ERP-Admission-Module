@@ -20,20 +20,24 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','mail',
-                'se_education_core',
+    'depends': [
+                
+                'base', 'mail',
                 'se_campus_facility'],
 
     # always loaded
     'data': [
-    # Security
+        # Security
         'security/ir.model.access.csv',
-    #Views 
+        # Views
         'views/se_admission_views.xml',
         'views/se_application_views.xml',
-    #Menus 
+        # Templates
+        'views/se_admission_website_template.xml',
+        # Menus
         'views/se_menus.xml',
     ],
+    
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
